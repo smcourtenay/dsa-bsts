@@ -15,50 +15,66 @@ class BinarySearchTree {
    * Returns the tree. Uses iteration. */
 
   insert(val) {
-    let value = new Node(val);
+    let valueNode = new Node(val);
 
     if(this.root === null){
-      this.root = value;
-      return this.root;
+      this.root = valueNode;
     }
 
-    let visitStack = this.root;
+    let visitStack = [this.root];
     while(visitStack.length !== 0){
       let current = visitStack.pop();
 
-      // if current.val > val
-      // push current.left
-      if(current.val > val){
+      if(val < current.val){
         if(current.left){
           visitStack.push(current.left);
         } else {
-            current.left = val;
+            current.left = valueNode;
         }
       }
 
-      // if current.val < val
-      // push current.right
-      
-      if(current.val > val){
-        visitStack.push(current.left);
+      if(current.val < val){
+        if(current.right){
+          visitStack.push(current.right);
+        } else {
+            current.right = valueNode;
+        }
       }
-
-    }
-    
-    if(this.root.val > val){
-      this.roo
     }
 
-
-
-    return bst;
+    return this;
   }
 
   /** insertRecursively(val): insert a new node into the BST with value val.
    * Returns the tree. Uses recursion. */
 
-  insertRecursively(val) {
+  insertRecursively(insertVal, currentNode=this.root) {
 
+    let insertValueNode = new Node(insertVal);
+
+    // Base cases
+    if(this.root === null){
+      this.root = insertValueNode;
+      return this;
+    }
+    if(insertVal < currentNode.val) {
+      if(!currentNode.left){
+        currentNode.left = insertValueNode
+        return this;
+      }
+      else{
+        this.insertRecursively(insertVal, currentNode.left)
+      }  
+    }
+    if(currentNode.val < insertVal) {
+      if(!currentNode.right){
+        currentNode.right = insertValueNode
+        return this;
+      }
+      else{
+        this.insertRecursively(insertVal, currentNode.right)
+      }  
+    }
   }
 
   /** find(val): search the tree for a node with value val.
