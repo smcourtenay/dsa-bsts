@@ -133,7 +133,15 @@ class BinarySearchTree {
   /** dfsPreOrder(): Traverse the array using pre-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPreOrder() {}
+  dfsPreOrder(currentNode = this.root, answerArr = [this.root.val]) {
+    
+    if (this.root === null) {
+      return undefined;
+    }
+
+    
+
+  }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
